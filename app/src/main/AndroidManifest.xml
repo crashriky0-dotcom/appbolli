@@ -10,18 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity
-            android:name=".PreventiviActivity" />
-
-        <activity
-            android:name=".ListinoActivity" />
-
-        <activity
-            android:name=".MeasureActivity" />
-
-        
+        <activity android:name=".PreventiviActivity" />
+        <activity android:name=".PreventivoFormActivity" />
+        <activity android:name=".ListinoActivity" />
+        <activity android:name=".MeasureActivity" />
         <activity android:name=".InfoActivity" />
-<activity
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

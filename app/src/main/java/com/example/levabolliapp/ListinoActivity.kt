@@ -3,80 +3,65 @@ package com.example.levabolliapp
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
 import org.json.JSONObject
 
-/**
-* Formato righe:
-* misura;min;max;prezzo
-*
-* Salva il listino personalizzato come JSON in SharedPreferences (via Storage),
-* così non dipendiamo dalla MainActivity e la build passa.
-*/
 class ListinoActivity : AppCompatActivity() {
 
     private lateinit var edtListino: EditText
-    private lateinit var txtStatus: TextView
+    private lateinit var btnSalva: Button
+    private lateinit var btnReset: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listino)
 
         edtListino = findViewById(R.id.edtListino)
-        txtStatus = findViewById(R.id.txtListinoStatus)
+        btnSalva = findViewById(R.id.btnSalvaListino)
+        btnReset = findViewById(R.id.btnRipristina)
 
-        val btnSalva: Button = findViewById(R.id.btnSalvaListino)
-        val btnRipristina: Button = findViewById(R.id.btnRipristinaListino)
+        loadListino()
 
         btnSalva.setOnClickListener {
-            val text = edtListino.text.toString().trim()
-            if (text.isEmpty()) {
-                txtStatus.text = getString(R.string.custom_pricing_empty_error)
-                return@setOnClickListener
-            }
-
-            val arr = JSONArray()
-            val lines = text.split("\n")
-
-            try {
-                for (line in lines) {
-                    if (line.isBlank()) continue
-                    val parts = line.split(";")
-                    if (parts.size < 4) continue
-
-                    val misura = parts[0].trim().toInt()
-                    val min = parts[1].trim().toInt()
-                    val max = parts[2].trim().toInt()
-                    val prezzo = parts[3].trim().toInt()
-
-                    val o = JSONObject()
-                    o.put("misura", misura)
-                    o.put("min", min)
-                    o.put("max", max)
-                    o.put("prezzo", prezzo)
-                    arr.put(o)
-                }
-            } catch (_: Exception) {
-                txtStatus.text = getString(R.string.custom_pricing_parse_error)
-                return@setOnClickListener
-            }
-
-            if (arr.length() == 0) {
-                txtStatus.text = getString(R.string.custom_pricing_empty_error)
-                return@setOnClickListener
-            }
-
-            // Salva JSON in prefs
-            Storage.saveString(this, "custom_listino_json", arr.toString())
-            txtStatus.text = getString(R.string.custom_pricing_saved)
+            saveListino()
         }
 
-        btnRipristina.setOnClickListener {
-            // Cancella custom e torna al default
-            Storage.saveString(this, "custom_listino_json", "")
-            txtStatus.text = getString(R.string.custom_pricing_reset)
+        btnReset.setOnClickListener {
+            Storage.remove(this, "custom_listino_json")
+            edtListino.setText("")
         }
+    }
+
+    private fun loadListino() {
+        val raw = Storage.getString(this, "custom_listino_json", "")
+        if (raw.isNotBlank()) {
+            val arr = JSONArray(raw)
+            val sb = StringBuilder()
+            for (i in 0 until arr.length()) {
+                val o = arr.getJSONObject(i)
+                sb.append("${o.getInt("misura")};${o.getInt("min")};${o.getInt("max")};${o.getInt("prezzo")}\n")
+            }
+            edtListino.setText(sb.toString())
+        }
+    }
+
+    private fun saveListino() {
+        val lines = edtListino.text.toString().split("\n")
+        val arr = JSONArray()
+
+        for (line in lines) {
+            val parts = line.split(";")
+            if (parts.size == 4) {
+                val obj = JSONObject()
+                obj.put("misura", parts[0].trim().toInt())
+                obj.put("min", parts[1].trim().toInt())
+                obj.put("max", parts[2].trim().toInt())
+                obj.put("prezzo", parts[3].trim().toInt())
+                arr.put(obj)
+            }
+        }
+
+        Storage.putString(this, "custom_listino_json", arr.toString())
     }
 }

@@ -4,27 +4,42 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
+            android:text="Levabolli"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"/>
 
-            <ImageButton
-                android:id="@+id/btnSettings"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Settings"
-                android:src="@android:drawable/ic_menu_manage"/>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnPreventivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nuovo Preventivo" />
+
+        <Button
+            android:id="@+id/btnListino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listino" />
+
+        <Button
+            android:id="@+id/btnMisure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Misure" />
+
+        <Button
+            android:id="@+id/btnInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Info" />
 
     </LinearLayout>
-
 </ScrollView>

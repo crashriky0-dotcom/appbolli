@@ -4,24 +4,20 @@ import android.content.Context
 
 object Storage {
 
-    private const val PREFS = "levabolli_prefs"
+    private const val PREF_NAME = "levabolli_prefs"
 
-    fun saveString(context: Context, key: String, value: String) {
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .edit()
-            .putString(key, value)
-            .apply()
+    private fun prefs(context: Context) =
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+
+    fun getString(context: Context, key: String, default: String = ""): String {
+        return prefs(context).getString(key, default) ?: default
     }
 
-    fun loadString(context: Context, key: String, defaultValue: String = ""): String {
-        return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .getString(key, defaultValue) ?: defaultValue
+    fun putString(context: Context, key: String, value: String) {
+        prefs(context).edit().putString(key, value).apply()
     }
 
-    fun deleteKey(context: Context, key: String) {
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .edit()
-            .remove(key)
-            .apply()
+    fun remove(context: Context, key: String) {
+        prefs(context).edit().remove(key).apply()
     }
 }

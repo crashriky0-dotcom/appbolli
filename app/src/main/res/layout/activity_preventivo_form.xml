@@ -13,11 +13,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Scheda Preventivo"
-            android:textSize="20sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:paddingBottom="12dp" />
 
-        <!-- BOX DATI -->
+        <!-- DATI BASE -->
         <EditText
             android:id="@+id/edtCliente"
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="Targa o Telaio" />
 
-        <!-- SMONTAGGIO SELEZIONABILE -->
+        <!-- SMONTAGGIO -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,8 +93,24 @@
             android:id="@+id/txtHintSmontaggio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A=90  B=120  C=150  D=200  (modificabile)"
+            android:text="A=90  B=120  C=150  D=200 (modificabile)"
             android:textSize="12sp" />
+
+        <!-- PANNELLI AUTO -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pannelli auto"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/panelsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
         <!-- PREZZO -->
         <TextView

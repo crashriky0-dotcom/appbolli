@@ -1,8 +1,8 @@
 package com.example.levabolliapp
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
-import androidx.appcompat.app.AlertDialog
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -11,17 +11,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Rotella impostazioni (se presente nel layout)
-        findViewById<ImageButton>(R.id.btnSettings)?.setOnClickListener {
-            showSettingsDialog()
+        findViewById<Button>(R.id.btnPreventivo).setOnClickListener {
+            startActivity(Intent(this, PreventivoFormActivity::class.java))
         }
-    }
 
-    private fun showSettingsDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Impostazioni")
-            .setMessage("Impostazioni base (placeholder).")
-            .setPositiveButton("OK", null)
-            .show()
+        findViewById<Button>(R.id.btnListino).setOnClickListener {
+            startActivity(Intent(this, ListinoActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.btnMisure).setOnClickListener {
+            startActivity(Intent(this, MeasureActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.btnInfo).setOnClickListener {
+            startActivity(Intent(this, InfoActivity::class.java))
+        }
     }
 }

@@ -9,3 +9,5 @@ class PreventivoFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preventivo_form)
     }
+
+}

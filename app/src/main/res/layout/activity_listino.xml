@@ -12,58 +12,46 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_pricing_title"
+            android:text="Listino personalizzato"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:paddingBottom="8dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/custom_pricing_explain"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/custom_pricing_example"
-            android:layout_marginBottom="4dp" />
+            android:text="Formato: misura;min_bolli;max_bolli;prezzo"
+            android:paddingBottom="8dp" />
 
         <EditText
             android:id="@+id/edtListino"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="top|start"
+            android:layout_height="300dp"
+            android:gravity="top"
             android:inputType="textMultiLine"
-            android:hint="@string/custom_pricing_hint" />
-
-        <TextView
-            android:id="@+id/txtListinoStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginTop="4dp" />
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="12dp">
+            android:paddingTop="16dp">
 
             <Button
                 android:id="@+id/btnSalvaListino"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/btn_save_pricing" />
+                android:text="SALVA LISTINO" />
 
             <Button
-                android:id="@+id/btnRipristinaListino"
+                android:id="@+id/btnRipristina"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="@string/btn_reset_pricing" />
+                android:text="RIPRISTINA STANDARD"
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
     </LinearLayout>
